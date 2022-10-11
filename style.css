@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
 @font-face {
     font-family: 'PocketMonk';
     src: url(assets/fonts/PocketMonk.ttf) format('truetype');
@@ -5,6 +7,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Russo One', sans-serif;
     color: #FFFFFF;
     padding: 0;
     border: 0;
@@ -12,6 +15,24 @@
 }
 
 :root {
+    --normal: #B9AA84;
+    --fire: #E17526;
+    --water: #5594F2;
+    --grass: #69CC60;
+    --electric: #ECDB40;
+    --ice: #79DFE5;
+    --fighting: #CC1616;
+    --poison: #7E3BB2;
+    --ground: #DCC382;
+    --flying: #AA93ED;
+    --psychic: #F94D95;
+    --bug: #A6CE65;
+    --rock: #CEAF5F;
+    --ghost: #6A5CBD;
+    --dark: #474233;
+    --dragon: #543DE7;
+    --steel: #BCBCBC;
+    --fairy: #FC9AC3;
     font-size: 16px;
 }
 
@@ -28,6 +49,191 @@ h1 {
     text-shadow: 0 0 0.25rem #FFFFFF;
     text-align: center;
     padding: 5rem 0 5rem;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0 50px 50px;
+}
+
+li {
+    margin: 25px;
+}
+
+.card {
+    position: relative;
+    bottom: 0;
+    font-size: 1.75rem;
+    width: 300px;
+    height: 300px;
+    padding: 25px;
+    border-radius: 25px;
+    transition: bottom 250ms ease-out;
+    cursor: pointer;
+}
+
+.card:hover {
+    bottom: 25px;
+}
+
+.card[data-type1="normal"] {
+    background-color: var(--normal);
+}
+
+.card[data-type1="fire"] {
+    background-color: var(--fire);
+}
+
+.card[data-type1="water"] {
+    background-color: var(--water);
+}
+
+.card[data-type1="grass"] {
+    background-color: var(--grass);
+}
+
+.card[data-type1="electric"] {
+    background-color: var(--electric);
+}
+
+.card[data-type1="ice"] {
+    background-color: var(--ice);
+}
+
+.card[data-type1="fighting"] {
+    background-color: var(--fighting);
+}
+
+.card[data-type1="poison"] {
+    background-color: var(--poison);
+}
+
+.card[data-type1="ground"] {
+    background-color: var(--ground);
+}
+
+.card[data-type1="flying"] {
+    background-color: var(--flying);
+}
+
+.card[data-type1="psychic"] {
+    background-color: var(--psychic);
+}
+
+.card[data-type1="bug"] {
+    background-color: var(--bug);
+}
+
+.card[data-type1="rock"] {
+    background-color: var(--rock);
+}
+
+.card[data-type1="ghost"] {
+    background-color: var(--ghost);
+}
+
+.card[data-type1="dark"] {
+    background-color: var(--dark);
+}
+
+.card[data-type1="dragon"] {
+    background-color: var(--dragon);
+}
+
+.card[data-type1="steel"] {
+    background-color: var(--steel);
+}
+
+.card[data-type1="fairy"] {
+    background-color: var(--fairy);
+}
+
+.card[data-type2="normal"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--normal) 65%);
+}
+
+.card[data-type2="fire"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fire) 65%);
+}
+
+.card[data-type2="water"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--water) 65%);
+}
+
+.card[data-type2="grass"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--grass) 65%);
+}
+
+.card[data-type2="electric"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--electric) 65%);
+}
+
+.card[data-type2="ice"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ice) 65%);
+}
+
+.card[data-type2="fighting"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fighting) 65%);
+}
+
+.card[data-type2="poison"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--poison) 65%);
+}
+
+.card[data-type2="ground"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ground) 65%);
+}
+
+.card[data-type2="flying"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--flying) 65%);
+}
+
+.card[data-type2="psychic"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--psychic) 65%);
+}
+
+.card[data-type2="bug"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--bug) 65%);
+}
+
+.card[data-type2="rock"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--rock) 65%);
+}
+
+.card[data-type2="ghost"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ghost) 65%);
+}
+
+.card[data-type2="dark"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--dark) 65%);
+}
+
+.card[data-type2="dragon"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--dragon) 65%);
+}
+
+.card[data-type2="steel"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--steel) 65%);
+}
+
+.card[data-type2="fairy"] {
+    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fairy) 65%);
+}
+
+.card img {
+    display: block;
+    height: calc(100% - 1.75rem);
+    image-rendering: pixelated;
+    background-image: radial-gradient(#FFFFFF, #FFFFFF 50%, #FFFFFF00 50%);
+    margin: 0 auto;
+}
+
+.card .info {
+    display: flex;
+    justify-content: space-between;
 }
 
 @keyframes bg-scroll {
