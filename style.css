@@ -79,147 +79,147 @@ li {
     bottom: 25px;
 }
 
-.card[data-type1="normal"] {
+[data-type1="normal"] {
     background-color: var(--normal);
 }
 
-.card[data-type1="fire"] {
+[data-type1="fire"] {
     background-color: var(--fire);
 }
 
-.card[data-type1="water"] {
+[data-type1="water"] {
     background-color: var(--water);
 }
 
-.card[data-type1="grass"] {
+[data-type1="grass"] {
     background-color: var(--grass);
 }
 
-.card[data-type1="electric"] {
+[data-type1="electric"] {
     background-color: var(--electric);
 }
 
-.card[data-type1="ice"] {
+[data-type1="ice"] {
     background-color: var(--ice);
 }
 
-.card[data-type1="fighting"] {
+[data-type1="fighting"] {
     background-color: var(--fighting);
 }
 
-.card[data-type1="poison"] {
+[data-type1="poison"] {
     background-color: var(--poison);
 }
 
-.card[data-type1="ground"] {
+[data-type1="ground"] {
     background-color: var(--ground);
 }
 
-.card[data-type1="flying"] {
+[data-type1="flying"] {
     background-color: var(--flying);
 }
 
-.card[data-type1="psychic"] {
+[data-type1="psychic"] {
     background-color: var(--psychic);
 }
 
-.card[data-type1="bug"] {
+[data-type1="bug"] {
     background-color: var(--bug);
 }
 
-.card[data-type1="rock"] {
+[data-type1="rock"] {
     background-color: var(--rock);
 }
 
-.card[data-type1="ghost"] {
+[data-type1="ghost"] {
     background-color: var(--ghost);
 }
 
-.card[data-type1="dark"] {
+[data-type1="dark"] {
     background-color: var(--dark);
 }
 
-.card[data-type1="dragon"] {
+[data-type1="dragon"] {
     background-color: var(--dragon);
 }
 
-.card[data-type1="steel"] {
+[data-type1="steel"] {
     background-color: var(--steel);
 }
 
-.card[data-type1="fairy"] {
+[data-type1="fairy"] {
     background-color: var(--fairy);
 }
 
-.card[data-type2="normal"] {
+[data-type2="normal"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--normal) 65%);
 }
 
-.card[data-type2="fire"] {
+[data-type2="fire"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fire) 65%);
 }
 
-.card[data-type2="water"] {
+[data-type2="water"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--water) 65%);
 }
 
-.card[data-type2="grass"] {
+[data-type2="grass"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--grass) 65%);
 }
 
-.card[data-type2="electric"] {
+[data-type2="electric"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--electric) 65%);
 }
 
-.card[data-type2="ice"] {
+[data-type2="ice"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ice) 65%);
 }
 
-.card[data-type2="fighting"] {
+[data-type2="fighting"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fighting) 65%);
 }
 
-.card[data-type2="poison"] {
+[data-type2="poison"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--poison) 65%);
 }
 
-.card[data-type2="ground"] {
+[data-type2="ground"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ground) 65%);
 }
 
-.card[data-type2="flying"] {
+[data-type2="flying"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--flying) 65%);
 }
 
-.card[data-type2="psychic"] {
+[data-type2="psychic"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--psychic) 65%);
 }
 
-.card[data-type2="bug"] {
+[data-type2="bug"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--bug) 65%);
 }
 
-.card[data-type2="rock"] {
+[data-type2="rock"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--rock) 65%);
 }
 
-.card[data-type2="ghost"] {
+[data-type2="ghost"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ghost) 65%);
 }
 
-.card[data-type2="dark"] {
+[data-type2="dark"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--dark) 65%);
 }
 
-.card[data-type2="dragon"] {
+[data-type2="dragon"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--dragon) 65%);
 }
 
-.card[data-type2="steel"] {
+[data-type2="steel"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--steel) 65%);
 }
 
-.card[data-type2="fairy"] {
+[data-type2="fairy"] {
     background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fairy) 65%);
 }
 
@@ -236,11 +236,236 @@ li {
     justify-content: space-between;
 }
 
+.entry {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    width: 975px;
+    border-radius: 25px;
+    animation: card-ascend 500ms ease-out forwards;
+}
+
+.entry :is(.id, .name) {
+    font-size: 2rem;
+}
+
+.entry .id {
+    display: block;
+    text-align: end;
+    margin: 25px 25px calc(2rem / 3);
+}
+
+.entry .id::before {
+    content: '#';
+}
+
+.entry .main {
+    display: flex;
+    margin: 0 25px 50px;
+}
+
+.entry .about {
+    width: 350px;
+    padding-right: 25px;
+    border-right: 5px solid #FFFFFF;
+    margin-left: 25px;
+}
+
+.entry .display {
+    position: relative;
+    width: fit-content;
+}
+
+.entry .gender-buttons {
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+
+.entry .gender {
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF00;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-top: calc(25px / 3);
+    margin-right: calc(25px / 5);
+    cursor: pointer;
+}
+
+.entry .gender:hover {
+    filter: saturate(150%) brightness(125%);
+}
+
+.entry .male {
+    background-image: url(assets/icons/male.svg);
+}
+
+.entry .female {
+    background-image: url(assets/icons/female.svg);
+}
+
+.entry .gender:last-child {
+    margin-right: calc(25px / 3);
+}
+
+.entry img {
+    image-rendering: pixelated;
+    width: 250px;
+    background-color: #FFFFFF;
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.entry .name {
+    margin-top: calc(2rem / 2);
+}
+
+.entry :is(.name, .species) {
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.entry :is(.species, .types, .measures, .habitat) {
+    font-size: 1.75rem;
+}
+
+.entry .desc {
+    width: 525px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 25px;
+    margin-right: 25px;
+}
+
+.entry .text {
+    height: 150px;
+    font-size: 1.5rem;
+    overflow: hidden;
+}
+
+.entry .types {
+    display: flex;
+    align-self: flex-end;
+}
+
+.entry .type {
+    width: 5em;
+    text-align: center;
+    overflow: hidden;
+    padding: 2.5px;
+    border: 5px solid #FFFFFF;
+    border-radius: 10px;
+    margin-right: 5px;
+    cursor: default;
+}
+
+.entry .type:last-child {
+    margin-right: 0;
+}
+
+.entry .measures {
+    display: flex;
+}
+
+.entry .measure {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.entry .weight {
+    text-align: end;
+}
+
+.entry .height::after {
+    content: ' m';
+}
+
+.entry .weight::after {
+    content: ' kg';
+}
+
+.entry .habitat {
+    display: block;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-size: contain;
+    image-rendering: pixelated;
+    padding: 25px;
+    border-radius: 0 0 25px 25px;
+}
+
+[data-habitat="grassland"] {
+    background-image: url(assets/images/habitats/grassland.png);
+}
+
+[data-habitat="forest"] {
+    background-image: url(assets/images/habitats/forest.png);
+}
+
+[data-habitat="water-edge"] {
+    background-image: url(assets/images/habitats/water-edge.png);
+}
+
+[data-habitat="sea"] {
+    background-image: url(assets/images/habitats/sea.png);
+}
+
+[data-habitat="cave"] {
+    background-image: url(assets/images/habitats/cave-entrance.png), url(assets/images/habitats/cave-wall.png);
+    background-repeat: no-repeat, repeat;
+    background-position: right, right;
+}
+
+[data-habitat="mountain"] {
+    background-image: url(assets/images/habitats/mountain.png);
+}
+
+[data-habitat="rough-terrain"] {
+    background-image: url(assets/images/habitats/rough-terrain-rock.png), url(assets/images/habitats/rough-terrain-grass.png);
+    background-repeat: no-repeat, repeat;
+    background-position: right, right;
+}
+
+[data-habitat="urban"] {
+    background-image: url(assets/images/habitats/urban-house.png), url(assets/images/habitats/urban-buildings.png);
+    background-repeat: no-repeat, repeat;
+    background-position: right, right;
+}
+
+[data-habitat="rare"] {
+    background-image: url(assets/images/habitats/rare-brightened.png), url(assets/images/habitats/rare-darkened.png);
+    background-repeat: no-repeat, repeat;
+    background-position: right, right;
+}
+
 @keyframes bg-scroll {
     0% {
         background-position: 0% 0%;
     }
     100% {
         background-position: 100% 100%;
+    }
+}
+
+@keyframes card-ascend {
+    75% {
+        bottom: 55%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
+    100% {
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
     }
 }
