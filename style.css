@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Flow+Rounded&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
 @font-face {
@@ -7,7 +8,6 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Russo One', sans-serif;
     color: #FFFFFF;
     padding: 0;
     border: 0;
@@ -33,6 +33,7 @@
     --dragon: #543DE7;
     --steel: #BCBCBC;
     --fairy: #FC9AC3;
+    font-family: 'Russo One', sans-serif;
     font-size: 16px;
 }
 
@@ -226,6 +227,7 @@ li {
 .card img {
     display: block;
     height: calc(100% - 1.75rem);
+    width: calc(100% - 1.75rem);
     image-rendering: pixelated;
     background-image: radial-gradient(#FFFFFF, #FFFFFF 50%, #FFFFFF00 50%);
     margin: 0 auto;
@@ -234,6 +236,14 @@ li {
 .card .info {
     display: flex;
     justify-content: space-between;
+}
+
+.card .name {
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 25px;
 }
 
 .entry {
@@ -446,6 +456,10 @@ li {
     background-image: url(assets/images/habitats/rare-brightened.png), url(assets/images/habitats/rare-darkened.png);
     background-repeat: no-repeat, repeat;
     background-position: right, right;
+}
+
+.loading {
+    font-family: 'Flow Rounded', cursive;
 }
 
 @keyframes bg-scroll {
