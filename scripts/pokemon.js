@@ -124,4 +124,9 @@ class Pokemon {
 
 }
 
+/**
+ * Array of pokémons that stores the data obtained on them.
+ */
+export const pokemons = new Array(Pokemon.total);
+
 export default Pokemon;
