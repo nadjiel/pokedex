@@ -1,5 +1,8 @@
 import Pokemon, { pokemons } from "./pokemon.js";
-import { setAttr, addClass, addClasses, changeClass, isVisible, rmvClass, appendChildren } from "./util.js";
+import {
+    setAttr, addClass, addClasses, changeClass,
+    isVisible, rmvClass, appendChildren
+} from "./util.js";
 
 const body = document.querySelector("body");
 
@@ -132,7 +135,7 @@ function createTypeSpan(type) {
  */
 function loadEntryData(i) {
     // Returns if the data is already loaded
-    if(pokemons[i].advancedData) return;
+    if(pokemons[i].entryData) return;
 
     const p = pokemons[i];
     const e = entries[i];
@@ -169,7 +172,7 @@ function loadEntryData(i) {
     height.textContent = p.height;
     weight.textContent = p.weight;
 
-    p.storeAdvancedData().then(() => {
+    p.storeEntryData().then(() => {
         species.textContent = p.species;
         desc.textContent = p.description;
         // Sets the habitat and adds an attribute for styling
@@ -347,6 +350,6 @@ export function loadPokemons() {
         if(pokemons[i]) continue;
 
         pokemons[i] = new Pokemon(i + 1);
-        pokemons[i].storeBasicData().then(() => showPokemon(i));
+        pokemons[i].storeCardData().then(() => showPokemon(i));
     }
 }

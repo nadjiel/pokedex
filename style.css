@@ -16,6 +16,7 @@
 /* Variable declarations and general styles */
 
 :root {
+    --unknown: #AFAFAF;
     --normal: #B9AA84;
     --fire: #E17526;
     --water: #5594F2;
@@ -115,6 +116,10 @@ li {
 
 /* Custom styles for each pokémon type */
 
+[data-type1="unknown"] {
+    background-color: var(--unknown);
+}
+
 [data-type1="normal"] {
     background-color: var(--normal);
 }
@@ -185,6 +190,12 @@ li {
 
 [data-type1="fairy"] {
     background-color: var(--fairy);
+}
+
+[data-type2="unknown"] {
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--unknown) 65%
+    );
 }
 
 [data-type2="normal"] {
@@ -423,7 +434,7 @@ li {
 }
 
 .entry .type {
-    width: 5em;
+    width: 5.25em;
     text-align: center;
     overflow: hidden;
     padding: 2.5px;

@@ -17,7 +17,7 @@ export function isVisible(el) {
  * @param {string} str the string to capitalize
  * @returns the received string with its first letter in upper case 
  */
-export function capitailize(str) {
+export function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
