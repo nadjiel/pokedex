@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Flow+Rounded&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+/* Imports */
 
+@import url(
+    'https://fonts.googleapis.com/css2?family=Flow+Rounded&display=swap'
+);
+@import url(
+    'https://fonts.googleapis.com/css2?family=Russo+One&display=swap'
+);
+
+/* Local custom font */
 @font-face {
     font-family: 'PocketMonk';
     src: url(assets/fonts/PocketMonk.ttf) format('truetype');
 }
 
-* {
-    box-sizing: border-box;
-    color: #FFFFFF;
-    padding: 0;
-    border: 0;
-    margin: 0;
-}
+/* Variable declarations and general styles */
 
 :root {
     --normal: #B9AA84;
@@ -35,6 +36,14 @@
     --fairy: #FC9AC3;
     font-family: 'Russo One', sans-serif;
     font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    color: #FFFFFF;
+    padding: 0;
+    border: 0;
+    margin: 0;
 }
 
 body {
@@ -64,6 +73,8 @@ li {
     margin: 25px;
 }
 
+/* Card styles */
+
 .card {
     position: relative;
     bottom: 0;
@@ -79,6 +90,30 @@ li {
 .card:hover {
     bottom: 25px;
 }
+
+.card img {
+    display: block;
+    height: calc(100% - 1.75rem);
+    width: calc(100% - 1.75rem);
+    image-rendering: pixelated;
+    background-image: radial-gradient(#FFFFFF, #FFFFFF 50%, #FFFFFF00 50%);
+    margin: 0 auto;
+}
+
+.card .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card .name {
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 25px;
+}
+
+/* Custom styles for each pokémon type */
 
 [data-type1="normal"] {
     background-color: var(--normal);
@@ -153,98 +188,114 @@ li {
 }
 
 [data-type2="normal"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--normal) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--normal) 65%
+    );
 }
 
 [data-type2="fire"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fire) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fire) 65%
+    );
 }
 
 [data-type2="water"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--water) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--water) 65%
+    );
 }
 
 [data-type2="grass"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--grass) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--grass) 65%
+    );
 }
 
 [data-type2="electric"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--electric) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--electric) 65%
+    );
 }
 
 [data-type2="ice"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ice) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ice) 65%
+    );
 }
 
 [data-type2="fighting"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fighting) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fighting) 65%
+    );
 }
 
 [data-type2="poison"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--poison) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--poison) 65%
+    );
 }
 
 [data-type2="ground"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ground) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ground) 65%
+    );
 }
 
 [data-type2="flying"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--flying) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--flying) 65%
+    );
 }
 
 [data-type2="psychic"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--psychic) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--psychic) 65%
+    );
 }
 
 [data-type2="bug"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--bug) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--bug) 65%
+    );
 }
 
 [data-type2="rock"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--rock) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--rock) 65%
+    );
 }
 
 [data-type2="ghost"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ghost) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--ghost) 65%
+    );
 }
 
 [data-type2="dark"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--dark) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--dark) 65%
+    );
 }
 
 [data-type2="dragon"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--dragon) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--dragon) 65%
+    );
 }
 
 [data-type2="steel"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--steel) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--steel) 65%
+    );
 }
 
 [data-type2="fairy"] {
-    background-image: linear-gradient(135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fairy) 65%);
+    background-image: linear-gradient(
+        135deg, #FFFFFF00,  #FFFFFF00 65%,  var(--fairy) 65%
+    );
 }
 
-.card img {
-    display: block;
-    height: calc(100% - 1.75rem);
-    width: calc(100% - 1.75rem);
-    image-rendering: pixelated;
-    background-image: radial-gradient(#FFFFFF, #FFFFFF 50%, #FFFFFF00 50%);
-    margin: 0 auto;
-}
-
-.card .info {
-    display: flex;
-    justify-content: space-between;
-}
-
-.card .name {
-    text-align: right;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding-left: 25px;
-}
+/* Entry styles */
 
 .entry {
     position: fixed;
@@ -253,7 +304,14 @@ li {
     transform: translate(-50%, 100%);
     width: 975px;
     border-radius: 25px;
-    animation: card-ascend 500ms ease-out forwards;
+}
+
+.slide-up {
+    animation: slide-up 500ms ease-out forwards;
+}
+
+.slide-down {
+    animation: slide-down 500ms ease-in forwards;
 }
 
 .entry :is(.id, .name) {
@@ -323,6 +381,7 @@ li {
 .entry img {
     image-rendering: pixelated;
     width: 250px;
+    height: 250px;
     background-color: #FFFFFF;
     padding: 5px;
     border-radius: 30px;
@@ -414,53 +473,95 @@ li {
     border-radius: 0 0 25px 25px;
 }
 
-[data-habitat="grassland"] {
+.entry .habitat::after {
+    content: ' Pokémon';
+}
+
+/* Custom styles for each pokémon habitat */
+
+[data-habitat="Grassland"] {
     background-image: url(assets/images/habitats/grassland.png);
 }
 
-[data-habitat="forest"] {
+[data-habitat="Forest"] {
     background-image: url(assets/images/habitats/forest.png);
 }
 
-[data-habitat="water-edge"] {
+[data-habitat="Water edge"] {
     background-image: url(assets/images/habitats/water-edge.png);
 }
 
-[data-habitat="sea"] {
+[data-habitat="Sea"] {
     background-image: url(assets/images/habitats/sea.png);
 }
 
-[data-habitat="cave"] {
-    background-image: url(assets/images/habitats/cave-entrance.png), url(assets/images/habitats/cave-wall.png);
+[data-habitat="Cave"] {
+    background-image:
+        url(assets/images/habitats/cave-entrance.png),
+        url(assets/images/habitats/cave-wall.png);
     background-repeat: no-repeat, repeat;
     background-position: right, right;
 }
 
-[data-habitat="mountain"] {
+[data-habitat="Mountain"] {
     background-image: url(assets/images/habitats/mountain.png);
 }
 
-[data-habitat="rough-terrain"] {
-    background-image: url(assets/images/habitats/rough-terrain-rock.png), url(assets/images/habitats/rough-terrain-grass.png);
+[data-habitat="Rough terrain"] {
+    background-image:
+        url(assets/images/habitats/rough-terrain-rock.png),
+        url(assets/images/habitats/rough-terrain-grass.png);
     background-repeat: no-repeat, repeat;
     background-position: right, right;
 }
 
-[data-habitat="urban"] {
-    background-image: url(assets/images/habitats/urban-house.png), url(assets/images/habitats/urban-buildings.png);
+[data-habitat="Urban"] {
+    background-image:
+        url(assets/images/habitats/urban-house.png),
+        url(assets/images/habitats/urban-buildings.png);
     background-repeat: no-repeat, repeat;
     background-position: right, right;
 }
 
-[data-habitat="rare"] {
-    background-image: url(assets/images/habitats/rare-brightened.png), url(assets/images/habitats/rare-darkened.png);
+[data-habitat="Rare"] {
+    background-image:
+        url(assets/images/habitats/rare-brightened.png),
+        url(assets/images/habitats/rare-darkened.png);
     background-repeat: no-repeat, repeat;
     background-position: right, right;
 }
+
+[data-habitat="Unknown habitat"] {
+    background-image: url(assets/images/habitats/unknown-habitat.png);
+    background-position: right;
+}
+
+/* Cards curtain styles */
+
+.curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000bf;
+}
+
+.fade-in {
+    animation: fade-in 500ms ease-out forwards;
+}
+
+.fade-out {
+    animation: fade-out 500ms ease-out forwards;
+}
+
+/* Default style for loading text */
 
 .loading {
     font-family: 'Flow Rounded', cursive;
 }
+
+/* Background animation */
 
 @keyframes bg-scroll {
     0% {
@@ -471,15 +572,66 @@ li {
     }
 }
 
-@keyframes card-ascend {
+/* Animations for the selected entry */
+
+@keyframes slide-up {
+    0% {
+        position: fixed;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, 100%);
+    }
     75% {
+        position: fixed;
         bottom: 55%;
         left: 50%;
         transform: translate(-50%, 50%);
     }
     100% {
+        position: fixed;
         bottom: 50%;
         left: 50%;
         transform: translate(-50%, 50%);
+    }
+}
+
+@keyframes slide-down {
+    0% {
+        position: fixed;
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
+    25% {
+        position: fixed;
+        bottom: 55%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
+    100% {
+        position: fixed;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, 100%);
+    }
+}
+
+/* Animations for the curtain that highlights the opened entry */
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 100;
+    }
+    to {
+        opacity: 0;
     }
 }

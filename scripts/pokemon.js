@@ -1,5 +1,5 @@
 import { API, language }  from "./global.js";
-import { Capitalize } from "./util.js";
+import { capitailize } from "./util.js";
 
 /**
  * Stores information received from the API about a pokémon.
@@ -12,6 +12,8 @@ class Pokemon {
      */
     constructor(id) {
         this.id = id;
+        this.basicData = false;
+        this.advancedData = false;
     }
 
     /**
@@ -38,7 +40,7 @@ class Pokemon {
      * related to the right game and in the correct language
      */
     findDescription = desc => {
-        return desc.version.name == "red" && desc.language.name == language;
+        return desc.language.name == language;
     }
 
     /**
@@ -47,7 +49,7 @@ class Pokemon {
      * @returns the refined version of the received name
      */
     refineName = name => {
-        name = Capitalize(name);
+        name = capitailize(name);
         // Substituting hyphen for empty space
         name = name.replaceAll("-", " ");
         // Substituting m (male) for male symbol
@@ -71,6 +73,14 @@ class Pokemon {
 
         return desc;
     };
+
+    refineHabitat = habitat => {
+        habitat = capitailize(habitat);
+        habitat = habitat.replaceAll("-", " ");
+        habitat = habitat.replace("Waters", "Water");
+
+        return habitat;
+    }
     
     /**
      * Fetches the API for data on this pokémon.
@@ -104,6 +114,8 @@ class Pokemon {
         this.type2 = data.types[1]?.type.name;
         this.height = data.height;
         this.weight = data.weight;
+
+        this.basicData = true;
     };
 
     /**
@@ -117,9 +129,13 @@ class Pokemon {
         // Stores and refines the description that concerns
         // the right game and is in the correct language
         this.description = this.refineDescription (
-            data.flavor_text_entries.find(this.findDescription).flavor_text
+            data.flavor_text_entries.findLast(this.findDescription).flavor_text
         );
-        this.habitat = data.habitat.name;
+        this.habitat = data.habitat?.name ?
+            this.refineHabitat(data.habitat.name) :
+            "Unknown habitat";
+
+        this.advancedData = true;
     };
 
 }
