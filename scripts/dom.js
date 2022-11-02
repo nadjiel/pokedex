@@ -1,5 +1,5 @@
 import Pokemon, { pokemons } from "./pokemon.js";
-import { setAttr, addClass, addClasses, changeClass, isVisible, rmvClass } from "./util.js";
+import { setAttr, addClass, addClasses, changeClass, isVisible, rmvClass, appendChildren } from "./util.js";
 
 const body = document.querySelector("body");
 
@@ -103,6 +103,85 @@ const curtain = createCurtain();
 
 
 /**
+ * Creates a button for selecting a pokémon's gender
+ * @param {string} gender the gender of the button to create (male or female)
+ * @returns the created gender button
+ */
+function createGenderButton(gender) {
+    const button = document.createElement("button");
+    addClasses(button, "gender", gender);
+
+    return button;
+}
+
+/**
+ * Creates a span for displaying a pokémon's type
+ * @param {string} type the type of the span to create (type1 or type2)
+ * @returns the created type span
+ */
+function createTypeSpan(type) {
+    const type2 = document.createElement("span");
+    addClasses(type2, "type", type);
+
+    return type2;
+}
+
+/**
+ * Loads, if not already loaded, the data needed for an entry.
+ * @param {number} i index of the entry in the array
+ */
+function loadEntryData(i) {
+    // Returns if the data is already loaded
+    if(pokemons[i].advancedData) return;
+
+    const p = pokemons[i];
+    const e = entries[i];
+    const {
+        id, name, img, genders, types, type1,
+        height, weight, species, desc, habitat
+    } = e.fields;
+
+    id.textContent = p.id;
+    name.textContent = p.name;
+    // Sets the pokémon image only if it exists
+    img.src = p.maleSprite ? p.maleSprite : "assets/icons/not-found.svg";
+    // Adds male and female button if the pokémon has gender differences
+    if(p.femaleSprite) {
+        const male = createGenderButton("male");
+        male.onclick = () => img.src = p.maleSprite;
+        const female = createGenderButton("female");
+        female.onclick = () => img.src = p.femaleSprite;
+
+        appendChildren(genders, male, female);
+    }
+    // Sets the first type and adds an attribute for styling
+    type1.textContent = p.type1;
+    setAttr(e, "data-type1", p.type1);
+    // Sets the second type only if it exists
+    if(p.type2) {
+        // Creates and sets the second type and adds an attribute for styling
+        const type2 = createTypeSpan("type2");
+        type2.textContent = p.type2;
+        setAttr(e, "data-type2", p.type2);
+
+        types.appendChild(type2);
+    }
+    height.textContent = p.height;
+    weight.textContent = p.weight;
+
+    p.storeAdvancedData().then(() => {
+        species.textContent = p.species;
+        desc.textContent = p.description;
+        // Sets the habitat and adds an attribute for styling
+        habitat.textContent = p.habitat;
+        setAttr(habitat, "data-habitat", p.habitat);
+
+        // Removes the loading class for styling
+        rmvClass(e, "loading");
+    });
+}
+
+/**
  * Darkens the cards by appending the curtain to the body
  * (over them) to highlight the opened entry.
  */
@@ -138,6 +217,7 @@ function openEntry(i) {
     closeCurtain();
     changeClass(e, "slide-down", "slide-up");
     body.appendChild(e);
+    loadEntryData(i);
 }
 
 /**
@@ -172,6 +252,26 @@ export function createCards() {
 }
 
 /**
+ * Stores the fields of this entry into a property for ease of access.
+ * @param {HTMLDivElement} entry the entry to have its fields stored
+ */
+function storeEntryFields(entry) {
+    entry.fields = {
+        id: entry.querySelector(".id"),
+        name: entry.querySelector(".name"),
+        img: entry.querySelector("img"),
+        genders: entry.querySelector(".gender-buttons"),
+        types: entry.querySelector(".types"),
+        type1: entry.querySelector(".type1"),
+        height: entry.querySelector(".height"),
+        weight: entry.querySelector(".weight"),
+        species: entry.querySelector(".species"),
+        desc: entry.querySelector(".text"),
+        habitat: entry.querySelector(".habitat")
+    };
+}
+
+/**
  * Configures a pokédex entry
  * @param {HTMLDivElement} entry the entry to set up
  */
@@ -180,6 +280,7 @@ function setupEntry(entry) {
     addClasses(entry, "entry", "loading");
     setAttr(entry, "data-type1", "normal");
     entry.innerHTML = entryHtml;
+    storeEntryFields(entry);
     // Makes the entry auto remove itself from the DOM when
     // it slides downwards to outside of the view
     entry.onanimationend = e => {

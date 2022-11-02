@@ -70,3 +70,15 @@ export function changeClass(el, oldClass, newClass) {
 export function setAttr(el, attrName, attrValue) {
     el.setAttribute(attrName, attrValue);
 }
+
+/**
+ * Appends various children to the passed element.
+ * @param {HTMLElement} el the element to which to append the children
+ * @param  {...HTMLElement} children the children that should
+ * be appended to the element
+ */
+export function appendChildren(el, ...children) {
+    for(const child of children) {
+        el.appendChild(child);
+    }
+}
