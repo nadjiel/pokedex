@@ -239,6 +239,8 @@ class Pokemon {
      * saves the obtained data in this instance.
      */
     storeEntryData = async () => {
+        if(!this.cardData) await this.storeCardData();
+
         const data = await this.entryFetch();
 
         this.storeSpecies(data.genera);
@@ -272,5 +274,13 @@ class Pokemon {
  * Array of pokémons that stores the data obtained on them.
  */
 export const pokemons = new Array(Pokemon.total);
+
+/**
+ * Instantiates all pokémon that will later store data.
+ */
+export function createPokemons() {
+    for(let i = 0; i < pokemons.length; i++)
+        pokemons[i] = new Pokemon(i + 1);
+}
 
 export default Pokemon;
