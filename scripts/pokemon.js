@@ -1,5 +1,5 @@
 import { API, language }  from "./global.js";
-import { capitailize } from "./util.js";
+import { capitalize } from "./util.js";
 
 /**
  * Stores information received from the API about a pokémon.
@@ -7,13 +7,73 @@ import { capitailize } from "./util.js";
 class Pokemon {
 
     /**
+     * Flag telling if the data needed for a card was already loaded.
+     */
+    cardData = false;
+
+    /**
+     * Flag telling if the data needed for an entry was already loaded.
+     */
+    entryData = false;
+
+    /**
+     * The name of this pokémon.
+     */
+    name = "Unknown name";
+
+    /**
+     * The sprite for this pokémon in its male
+     * version.
+     */
+    maleSprite = "assets/icons/not-found.svg";
+
+    /**
+     * The sprite for this pokémon in its female
+     * version.
+     */
+    femaleSprite = null;
+
+    /**
+     * The first type of this pokémon.
+     */
+    type1 = "unknown";
+
+    /**
+     * The second type of this pokémon.
+     */
+    type2 = null;
+
+    /**
+     * The height of this pokémon.
+     */
+    height = "Unknown";
+
+    /**
+     * The weight of this pokémon.
+     */
+    weight = "Unknown";
+
+    /**
+     * The species in which this pokémon is classified.
+     */
+    species = "Unknown species pokémon";
+
+    /**
+     * The description about this pokémon.
+     */
+    description = "Details about this pokémon are unknown.";
+
+    /**
+     * The habitat of this pokémon.
+     */
+    habitat = "Unknown habitat";
+
+    /**
      * Creates a pokémon instance.
      * @param {number} id id of the pokémon represented by this instance
      */
     constructor(id) {
         this.id = id;
-        this.basicData = false;
-        this.advancedData = false;
     }
 
     /**
@@ -24,32 +84,14 @@ class Pokemon {
     }
 
     /**
-     * Tells if a species is in the right language.
-     * @param {object} species species to examine
-     * @returns boolean indicating if the received species is
-     * in the correct language
+     * Stores the name of this pokémon, if it is found.
+     * @param {string} name the name to be stored
      */
-    findSpecies = species => species.language.name == language;
+    storeName = name => {
+        if(!name) return;
 
-
-    /**
-     * Tells if a description concerns the right pokémon
-     * game and language.
-     * @param {object} desc description to examine
-     * @returns boolean indicating if the received description is
-     * related to the right game and in the correct language
-     */
-    findDescription = desc => {
-        return desc.language.name == language;
-    }
-
-    /**
-     * Refines the name of this pokémon received by the API.
-     * @param {string} name the name of this pokémon
-     * @returns the refined version of the received name
-     */
-    refineName = name => {
-        name = capitailize(name);
+        // Capitilizing name
+        name = capitalize(name);
         // Substituting hyphen for empty space
         name = name.replaceAll("-", " ");
         // Substituting m (male) for male symbol
@@ -57,85 +99,173 @@ class Pokemon {
         // Substituting f (female) for female symbol
         name = name.replace(/ f$/, " ♀");
 
-        return name;
+        this.name = name;
     };
 
     /**
-     * Refines the description of this pokémon received by the API.
-     * @param {string} desc the description of this pokémon
-     * @returns the refined version of the received description
+     * Stores the sprite of this pokémon in its male form, if it is found.
+     * @param {object} sprites object with the sprites of this pokémon
      */
-    refineDescription = desc => {
-        // Substituting new line for empty space
-        desc = desc.replaceAll("\n", " ");
-        // Substituting form feed for empty space
-        desc = desc.replaceAll("\u000c", " ");
+    storeMaleSprite = sprites => {
+        if(!sprites?.front_default) return;
 
-        return desc;
+        this.maleSprite = sprites.front_default;
     };
 
-    refineHabitat = habitat => {
-        habitat = capitailize(habitat);
-        habitat = habitat.replaceAll("-", " ");
-        habitat = habitat.replace("Waters", "Water");
+    /**
+     * Stores the sprite of this pokémon in its female form, if it is found.
+     * @param {object} sprites object with the sprites of this pokémon
+     */
+    storeFemaleSprite = sprites => {
+        if(!sprites?.front_female) return;
 
-        return habitat;
-    }
+        this.femaleSprite = sprites.front_female;
+    };
+
+    /**
+     * Stores the first type of this pokémon, if it is found.
+     * @param {object[]} types array with the types of this pokémon
+     */
+    storeType1 = types => {
+        if(!types?.[0]?.type?.name) return;
+
+        this.type1 = types[0].type.name;
+    };
+
+    /**
+     * Stores the second type of this pokémon, if it is found.
+     * @param {object[]} types array with the types of this pokémon
+     */
+    storeType2 = types => {
+        if(!types?.[1]?.type?.name) return;
+
+        this.type2 = types[1].type.name;
+    };
+
+    /**
+     * Stores the height of this pokémon, if it is found.
+     * @param {number} height the height to be stored
+     */
+    storeHeight = height => {
+        if(!height) return;
+
+        this.height = height;
+    };
+
+    /**
+     * Stores the weight of this pokémon, if it is found.
+     * @param {number} weight the weight to be stored
+     */
+    storeWeight = weight => {
+        if(!weight) return;
+
+        this.weight = weight;
+    };
+
+    /**
+     * Stores this pokémon's species that's in
+     * the right language, if it is found.
+     * @param {object[]} genera array with the genera of
+     * this pokémon in various languages
+     */
+    storeSpecies = genera => {
+        if(!genera?.[0]?.genus) return;
+
+        this.species = genera.findLast (
+            el => {
+                if(!el?.language?.name) return true;
+
+                return el.language.name == language
+            }
+        ).genus;
+    };
+
+
+    /**
+     * Stores the description about this pokémon that's in
+     * the right language, if it is found.
+     * @param {object[]} flavorTexts array with the flavor texts
+     * (descriptions) of this pokémon in various languages
+     */
+    storeDescription = flavorTexts => {
+        if(!flavorTexts?.[0]?.flavor_text) return;
+
+        this.description = flavorTexts.findLast (
+            el => {
+                if(!el?.language?.name) return true;
+
+                return el.language.name == language;
+            }
+        ).flavor_text;
+    };
+
+    /**
+     * Stores the habitat of this pokémon, if it is found.
+     * @param {object} habitat object with the habitat of this pokémon
+     */
+    storeHabitat = habitat => {
+        if(!habitat?.name) return;
+
+        // Capitalizing the habitat string
+        habitat.name = capitalize(habitat.name);
+        // Substituting hyphens for empty spaces
+        habitat.name = habitat.name.replaceAll("-", " ");
+        // Substituting "Waters" for "Water"
+        habitat.name = habitat.name.replace("Waters", "Water");
+
+        this.habitat = habitat.name;
+    };
+
+    /**
+     * Consumes the API for data needed for a card and
+     * saves the obtained data in this instance.
+     */
+    storeCardData = async () => {
+        const data = await this.cardFetch();
+
+        this.storeName(data.name);
+        this.storeMaleSprite(data.sprites);
+        this.storeFemaleSprite(data.sprites);
+        this.storeType1(data.types);
+        this.storeType2(data.types);
+        this.storeHeight(data.height);
+        this.storeWeight(data.weight);
+
+        this.cardData = true;
+    };
+
+    /**
+     * Consumes the API for data needed for an entry and
+     * saves the obtained data in this instance.
+     */
+    storeEntryData = async () => {
+        if(!this.cardData) await this.storeCardData();
+
+        const data = await this.entryFetch();
+
+        this.storeSpecies(data.genera);
+        this.storeDescription(data.flavor_text_entries);
+        this.storeHabitat(data.habitat);
+
+        this.entryData = true;
+    };
     
     /**
-     * Fetches the API for data on this pokémon.
+     * Fetches the API for data for this pokémon's card.
      * @returns promise containing the fetched data
      */
-    basicFetch = async () => {
+    cardFetch = async () => {
         return await fetch(API + "pokemon/" + this.id)
             .then(res => res.json());
-    }
-
-    /**
-     * Fetches the API for more data on this pokémon.
-     * @returns promise containing the fetched data
-     */
-    advancedFetch = async () => {
-        return await fetch(API + "pokemon-species/" + this.id)
-            .then(res => res.json());
-    }
-
-    /**
-     * Consumes the API and saves the obtained data in this instance.
-     */
-    storeBasicData = async () => {
-        const data = await this.basicFetch();
-
-        this.name = this.refineName(data.name);
-        this.maleSprite = data.sprites.front_default;
-        this.femaleSprite = data.sprites.front_female;
-        this.type1 = data.types[0].type.name;
-        // Stores the second type only if it exists
-        this.type2 = data.types[1]?.type.name;
-        this.height = data.height;
-        this.weight = data.weight;
-
-        this.basicData = true;
     };
 
     /**
-     * Consumes the API for more data and saves it in this instance.
+     * Fetches the API for data for this pokémon's entry.
+     * @returns promise containing the fetched data
      */
-    storeAdvancedData = async () => {
-        const data = await this.advancedFetch();
-
-        // Stores the species that is in the right language
-        this.species = data.genera.find(this.findSpecies).genus;
-        // Stores and refines the description that concerns
-        // the right game and is in the correct language
-        this.description = this.refineDescription (
-            data.flavor_text_entries.findLast(this.findDescription).flavor_text
-        );
-        this.habitat = data.habitat?.name ?
-            this.refineHabitat(data.habitat.name) :
-            "Unknown habitat";
-
-        this.advancedData = true;
+    entryFetch = async () => {
+        return await fetch(API + "pokemon-species/" + this.id)
+            .then(res => res.json());
     };
 
 }
@@ -144,5 +274,13 @@ class Pokemon {
  * Array of pokémons that stores the data obtained on them.
  */
 export const pokemons = new Array(Pokemon.total);
+
+/**
+ * Instantiates all pokémon that will later store data.
+ */
+export function createPokemons() {
+    for(let i = 0; i < pokemons.length; i++)
+        pokemons[i] = new Pokemon(i + 1);
+}
 
 export default Pokemon;

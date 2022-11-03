@@ -1,5 +1,8 @@
 import Pokemon, { pokemons } from "./pokemon.js";
-import { setAttr, addClass, addClasses, changeClass, isVisible, rmvClass, appendChildren } from "./util.js";
+import {
+    setAttr, addClass, addClasses, changeClass,
+    isVisible, rmvClass, appendChildren
+} from "./util.js";
 
 const body = document.querySelector("body");
 
@@ -130,11 +133,14 @@ function createTypeSpan(type) {
  * Loads, if not already loaded, the data needed for an entry.
  * @param {number} i index of the entry in the array
  */
-function loadEntryData(i) {
-    // Returns if the data is already loaded
-    if(pokemons[i].advancedData) return;
-
+async function loadEntryData(i) {
     const p = pokemons[i];
+
+    // Returns if the data is already loaded
+    if(p.entryData) return;
+    // Loads the card information, if not already loaded
+    if(!p.cardData) await loadCardData(i);
+
     const e = entries[i];
     const {
         id, name, img, genders, types, type1,
@@ -143,8 +149,7 @@ function loadEntryData(i) {
 
     id.textContent = p.id;
     name.textContent = p.name;
-    // Sets the pokémon image only if it exists
-    img.src = p.maleSprite ? p.maleSprite : "assets/icons/not-found.svg";
+    img.src = p.maleSprite;
     // Adds male and female button if the pokémon has gender differences
     if(p.femaleSprite) {
         const male = createGenderButton("male");
@@ -169,16 +174,16 @@ function loadEntryData(i) {
     height.textContent = p.height;
     weight.textContent = p.weight;
 
-    p.storeAdvancedData().then(() => {
-        species.textContent = p.species;
-        desc.textContent = p.description;
-        // Sets the habitat and adds an attribute for styling
-        habitat.textContent = p.habitat;
-        setAttr(habitat, "data-habitat", p.habitat);
+    await p.storeEntryData();
+    
+    species.textContent = p.species;
+    desc.textContent = p.description;
+    // Sets the habitat and adds an attribute for styling
+    habitat.textContent = p.habitat;
+    setAttr(habitat, "data-habitat", p.habitat);
 
-        // Removes the loading class for styling
-        rmvClass(e, "loading");
-    });
+    // Removes the loading class for styling
+    rmvClass(e, "loading");
 }
 
 /**
@@ -221,11 +226,24 @@ function openEntry(i) {
 }
 
 /**
+ * Stores the fields of this card into a property for ease of access.
+ * @param {HTMLLIElement} card the card to have its fields stored
+ */
+function storeCardFields(card) {
+    card.fields = {
+        id: card.querySelector(".id"),
+        name: card.querySelector(".name"),
+        img: card.querySelector("img")
+    };
+}
+
+/**
  * Configures a pokédex card.
  * @param {HTMLLIElement} card the card to be set up
  */
 function setupCard(card) {
     card.innerHTML = cardHtml;
+    storeCardFields(card);
 }
 
 /**
@@ -310,30 +328,26 @@ export function createEntries() {
 }
 
 /**
- * Displays the ith pokémon of the array of pokémons on
- * the ith card of the array of cards.
- * @param {number} i the in array position of the pokémon to show
+ * Loads, if not already loaded, the data needed for a card.
+ * @param {number} i index of the card in the array
  */
-function showPokemon(i) {
-    // Getting the card in question
+async function loadCardData(i) {
     const c = cards[i];
-    // Getting the pokémon in question
     const p = pokemons[i];
 
-    // Removing loading class for style purposes
-    c.querySelector(".loading").classList.remove("loading");
+    await p.storeCardData();
 
-    c.querySelector(".card").setAttribute("data-type1", p.type1);
+    setAttr(c.firstElementChild, "data-type1", p.type1);
     // Setting second type only if it exists
-    if(p.type2) c.querySelector(".card").setAttribute("data-type2", p.type2);
+    if(p.type2) setAttr(c.firstElementChild, "data-type2", p.type2);
     // Setting pokémon image only if found
-    c.querySelector("img").setAttribute (
-        "src",
-        p.maleSprite ? p.maleSprite : "assets/icons/not-found.svg"
-    );
-    c.querySelector("img").setAttribute("alt", p.name);
-    c.querySelector(".id").textContent = p.id;
-    c.querySelector(".name").textContent = p.name;
+    setAttr(c.fields.img, "src", p.maleSprite);
+    setAttr(c.fields.img, "alt", p.name);
+    c.fields.id.textContent = p.id;
+    c.fields.name.textContent = p.name;
+
+    // Removing loading class for style purposes
+    rmvClass(c.firstElementChild, "loading");
 }
 
 /**
@@ -344,9 +358,8 @@ export function loadPokemons() {
     for(let i = 0; i < cards.length; i++) {
         if(!isVisible(cards[i])) continue;
         if(!cards[i].querySelector(".loading")) continue;
-        if(pokemons[i]) continue;
+        if(pokemons[i].cardData) continue;
 
-        pokemons[i] = new Pokemon(i + 1);
-        pokemons[i].storeBasicData().then(() => showPokemon(i));
+        loadCardData(i);
     }
 }
