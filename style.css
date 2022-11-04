@@ -572,6 +572,116 @@ li {
     font-family: 'Flow Rounded', cursive;
 }
 
+/* Responsivity */
+
+@media (max-width: 1180px) {
+    :root {
+        font-size: 8px;
+    }
+
+    ul {
+        margin-inline: 0;
+    }
+
+    li {
+        margin: 10px;
+    }
+
+    .card {
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    .card:hover {
+        bottom: 15px;
+    }
+
+    .entry :is(.id, .name) {
+        font-size: 4rem;
+    }
+
+    .entry .id {
+        margin-bottom: calc(4rem / 3);
+    }
+
+    .entry .name {
+        margin-top: calc(4rem / 2);
+    }
+
+    .entry :is(.species, .types, .measures, .habitat) {
+        font-size: 3.5rem;
+    }
+
+    .entry .text {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 975px) {
+    .entry {
+        width: 100vw;
+        min-width: 300px;
+        max-width: 620px;
+    }
+
+    .entry :is(.id, .name) {
+        font-size: 3rem;
+    }
+
+    .entry .main {
+        flex-direction: column;
+        margin: 0 25px 25px;
+    }
+
+    .entry .about {
+        width: auto;
+        border: none;
+        padding: 0;
+        margin: 0 auto 2rem;
+    }
+
+    .entry .display {
+        margin: 0 auto;
+    }
+
+    .entry :is(.name, .species) {
+        text-align: center;
+    }
+
+    .entry :is(.species, .types, .measures, .habitat) {
+        font-size: 2.5rem;
+    }
+
+    .entry .desc {
+        display: block;
+        width: auto;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .entry .text {
+        font-size: 2rem;
+        text-align: center;
+        height: auto;
+        margin-bottom: 3rem;
+    }
+
+    .entry .types {
+        margin-bottom: 1.75rem;
+        justify-content: center;
+    }
+
+    .entry .type {
+        margin-right: 10px;
+    }
+
+    .entry .habitat {
+        padding: 2.5rem;
+    }
+}
+
 /* Background animation */
 
 @keyframes bg-scroll {

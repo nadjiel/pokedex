@@ -85,6 +85,15 @@ function setupCurtain(curtain) {
         openCurtain();
         closeEntry();
     }
+    // Makes the curtain open when the escape key is
+    // pressed also
+    window.onkeydown = e => {
+        if(e.key == "Escape" && e.repeat == false) {
+            if(document.querySelector(".curtain")) {
+                curtain.onclick();
+            }
+        }
+    }
 }
 
 /**
