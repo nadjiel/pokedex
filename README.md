@@ -9,7 +9,7 @@ This project is a site that provides informations about the pokémons in a visua
 The site was developed using the HTML, CSS and JS web technologies. Having as its main purpose help me practice these languages and, mainly, asynchronous javascript concepts such as the `async` and `await` syntaxes and the promises.
 
 ## Accessing
-Accessing the pokédex is as simple as clicking this [link](https://nadjielse.github.io/pokedex/).
+Accessing the pokédex is as simple as clicking this [link](https://nadjiel.github.io/pokedex/).
 
 ### Disclaimers
 Pokémon and related trademarks are properties of their respective owners.
