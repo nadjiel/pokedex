@@ -9,7 +9,7 @@ Este projeto é um site que provê informações sobre os pokémons de um jeito 
 O site foi desenvolvido usando as tecnologias da web: HTML, CSS e JS. Tendo como principal intuito me ajudar a praticar essas linguagens e, principalmente, a parte assíncrona do javascript, com conceitos como o `async` e o `await` e as promises.
 
 ## Acessando
-O acesso a pokédex pode ser feito com um simples clique neste [link](https://nadjielse.github.io/pokedex/).
+O acesso a pokédex pode ser feito com um simples clique neste [link](https://nadjiel.github.io/pokedex/).
 
 ### Avisos
 Pokémon e marcas relacionadas são propriedades de seus respectivos donos.
